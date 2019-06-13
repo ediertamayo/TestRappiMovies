@@ -18,17 +18,17 @@ import java.util.ArrayList;
 
 public class Conexion {
 
-    public static ArrayList<Pelicula> enviarPeticion(String url) throws IOException {
+    public static ArrayList<Pelicula> enviarPeticion(String url) throws IOException {                       //Se hace la petición http a la API y retorno una lista con las peliculas
         ArrayList<Pelicula> movies = new ArrayList<Pelicula>();
         try {
-            URL new_url = new URL(url);
-            HttpURLConnection connection = (HttpURLConnection) new_url.openConnection();
+            URL new_url = new URL(url);                                                                     //La url formada con la caterio base y con el API KEY
+            HttpURLConnection connection = (HttpURLConnection) new_url.openConnection();                    //Se hace la conexion
             connection.connect();
 
             InputStream inputStream = connection.getInputStream();
-            String results = IOUtils.toString(inputStream);
+            String results = IOUtils.toString(inputStream);                                                 //Se capturan y convierten los resultados
             parseJson(results, movies);
-            inputStream.close();
+            inputStream.close();                                                                            //Se convierte de JSON a objetos de nuestra clase pelicula
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class Conexion {
         return movies;
     }
 
-    public static void parseJson(String data, ArrayList<Pelicula> list) {
+    public static void parseJson(String data, ArrayList<Pelicula> list) {                                   //Se toma la información necesaria para crear nuestro objeto de la clase pelicula
 
         try {
             JSONObject mainObject = new JSONObject(data);
@@ -56,7 +56,7 @@ public class Conexion {
                 pelicula.setResumen(jsonObject.getString("overview"));
                 pelicula.setFechaLanzamiento(jsonObject.getString("release_date"));
                 pelicula.setRutaPoster(jsonObject.getString("poster_path"));
-                list.add(pelicula);
+                list.add(pelicula);                                                                         //Finalmente creo una lista de objetos
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -65,9 +65,8 @@ public class Conexion {
 
     }
 
-    public static Boolean networkStatus(Context context){
-        ConnectivityManager manager = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static Boolean estadoRed(Context context){                                                                   //Verifico si se tiene conexion y retorno un valor booleano
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()){
             return true;

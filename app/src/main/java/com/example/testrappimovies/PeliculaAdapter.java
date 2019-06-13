@@ -16,7 +16,7 @@ public class PeliculaAdapter extends BaseAdapter{
 
     private Context mContext;
     ArrayList<Pelicula> list;
-    public static final String PELICULA_URL="https://image.tmdb.org/t/p/w185";
+    public static final String PELICULA_URL="https://image.tmdb.org/t/p/w185";                      //URL base para cargar las imagnes
 
     public PeliculaAdapter(Context context, ArrayList<Pelicula> movieList) {
         this.mContext = context;
@@ -26,7 +26,7 @@ public class PeliculaAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         return list.size();
-    }
+    }                                                                                               //Metodos para obtener ingormación de la grilla
 
     @Override
     public Object getItem(int position) {
@@ -39,7 +39,7 @@ public class PeliculaAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {                         //Hace la descripción de cada objeto en una cudricula de la grilla
         ImageView imageView;
         Pelicula pelicula = list.get(position);
         RelativeLayout relativeLayout = new RelativeLayout(mContext);

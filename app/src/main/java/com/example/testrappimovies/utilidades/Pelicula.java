@@ -2,7 +2,7 @@ package com.example.testrappimovies.utilidades;
 
 import java.io.Serializable;
 
-public class Pelicula implements Serializable {
+public class Pelicula implements Serializable { //Defino la clase Pelicula con los atributos necesarios y creo los metodos de control
     private int id;
     private  int puntuacion;
     private int contadorVotos;

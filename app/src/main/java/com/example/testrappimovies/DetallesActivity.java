@@ -21,14 +21,14 @@ public class DetallesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles);
 
-        tvTitulo=(TextView) findViewById(R.id.tvTitulo);
+        tvTitulo=(TextView) findViewById(R.id.tvTitulo);                                            //Paso de objetos XML a Objetos Java
         tvResumen=(TextView) findViewById(R.id.tvResumen);
         ivImagen=(ImageView) findViewById(R.id.ivImagen);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent();                                                                //Recupero la información que me envia la actividad anterior
         Pelicula peli = (Pelicula)  intent.getSerializableExtra("detail");
 
-        tvTitulo.setText(peli.getTitulo());
+        tvTitulo.setText(peli.getTitulo());                                                         //Cambio los valores de la interfaz gráfica con los correspondientes a la pelicula seleccionada
         tvResumen.setText(peli.getResumen());
 
         Picasso.get()
